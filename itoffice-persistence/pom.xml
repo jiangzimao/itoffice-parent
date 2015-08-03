@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.itoffice</groupId>
+		<artifactId>itoffice-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>itoffice-persistence</artifactId>
+	<name>itoffice-persistence</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+
+	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<!-- jdbc connetion -->
+				<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+				<jdbc.url><![CDATA[jdbc:mysql://localhost:3306/itoffice?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=utf8]]></jdbc.url>
+				<jdbc.username>itoffice</jdbc.username>
+				<jdbc.password>itoffice</jdbc.password>
+
+				<!-- hibernate properties -->
+				<hibernate.hbm2ddl.auto>none</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.format_sql>true</hibernate.format_sql>
+				<hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
+				<batch.schema.script>classpath*:/org/springframework/batch/core/schema-mysql.sql</batch.schema.script>
+			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+</project>
