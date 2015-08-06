@@ -1,7 +1,9 @@
 package com.itoffice.persistence.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -11,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="t_user")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@XmlRootElement(name = "user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 

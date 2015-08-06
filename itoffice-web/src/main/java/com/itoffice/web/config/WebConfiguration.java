@@ -187,9 +187,9 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	}
 
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/api-docs/**/**")
-		.addResourceLocations("classpath:/META-INF/resources/public/sdoc/")
-		.setCachePeriod(0);
+		registry.addResourceHandler("/**")
+        .addResourceLocations("/","classpath:/META-INF/resources/public/api-docs/");
+//        .setCachePeriod(0);
 	}
 
 	public void configureDefaultServletHandling(

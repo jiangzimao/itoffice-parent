@@ -10,6 +10,7 @@
  */
 package com.itoffice.api.comfig;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -17,10 +18,12 @@ import java.util.concurrent.Callable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.PathResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.context.request.async.WebAsyncTask;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
 import com.mangofactory.swagger.models.dto.ApiInfo;
@@ -80,4 +83,14 @@ public class SwaggerConfig {
                 "My Apps API License URL");
         return apiInfo;
     }
+	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() throws IOException{
+	    CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+	    resolver.setDefaultEncoding("UTF-8");
+	    resolver.setMaxInMemorySize(1024);
+	    resolver.setMaxUploadSize(-1);
+	    resolver.setUploadTempDir(new PathResource("D://temp/"));
+	    return resolver;
+	}
 }
